@@ -3,7 +3,7 @@
 #include <cctype>
 using namespace std;
 
-struct MinHeapNode{
+struct MinHeapNode {
     char data;
     int freq;
     MinHeapNode *left, *right;
@@ -14,7 +14,7 @@ struct MinHeapNode{
     }
 };
 
-void printCodes(MinHeapNode* root, string str) {
+void printCodes(MinHeapNode *root, string str) {
     if(root == nullptr) {
         return;
     }
@@ -25,8 +25,8 @@ void printCodes(MinHeapNode* root, string str) {
     printCodes(root->right, str+"1");
 }
 
-struct compare{
-    bool operator()(MinHeapNode* a, MinHeapNode* b) {
+struct compare {
+    bool operator() (MinHeapNode *a, MinHeapNode *b) {
         return (a->freq > b->freq);
     }
 };
@@ -47,24 +47,24 @@ void Huffman() {
     int frequency;
 
     do {
-        cout<<"Enter a character : ";
+        cout<<"Enter character : ";
         cin>>input;
         if(input.length() == 1 && isalpha(input[0])) {
             character = input[0];
             break;
         } else {
-            cout<<"Enter valid character\n";
+            cout<<"Enter a valid character\n";
         }
     } while(true);
 
     do {
-        cout<<"Enter frequency for character "<<character<<" : ";
+        cout<<"Enter frequency of character : ";
         cin>>input;
         if(isNumber(input)) {
             frequency = stoi(input);
             break;
         } else {
-            cout<<"Enter valid frequency\n";
+            cout<<"Enter a valid number for frequency\n";
         }
     } while(true);
 
@@ -72,37 +72,37 @@ void Huffman() {
 
     while(true) {
         char choice;
-        cout<<"Want to add another character? (Y/N) : ";
+        cout<<"Want to add one more character : (Y/N)";
         cin>>choice;
         if(toupper(choice) == 'N') {
             break;
         }
         else if(toupper(choice) == 'Y') {
             do {
-                cout<<"Enter a character : ";
+                cout<<"Enter character : ";
                 cin>>input;
                 if(input.length() == 1 && isalpha(input[0])) {
                     character = input[0];
                     break;
                 } else {
-                    cout<<"Enter valid character\n";
+                    cout<<"Enter a valid character\n";
                 }
             } while(true);
 
             do {
-                cout<<"Enter frequency for character "<<character<<" : ";
+                cout<<"Enter frequency of character : ";
                 cin>>input;
                 if(isNumber(input)) {
                     frequency = stoi(input);
                     break;
                 } else {
-                    cout<<"Enter valid frequency\n";
+                    cout<<"Enter a valid number for frequency\n";
                 }
             } while(true);
-
             minHeap.push(new MinHeapNode(character, frequency));
-        } else {
-            cout<<"Enter valid input (Y/N)\n";
+        } 
+        else {
+            cout<<"Invalid Input\nEnter either (Y/N)";
         }
     }
 
@@ -116,11 +116,9 @@ void Huffman() {
         temp->right = right;
         minHeap.push(temp);
     }
-
     cout<<"Huffman codes : \n";
-    printCodes(minHeap.top(), "");
+    printCodes(minHeap.top(), " ");
 }
-
 
 int main() {
     Huffman();
